@@ -1,0 +1,156 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Body */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Container */
+.container {
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heading */
+.card h1 {
+  color: #ff4b6e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Input */
+.card input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+
+.card input:focus {
+  border-color: #ff4b6e;
+  box-shadow: 0 0 5px rgba(255, 75, 110, 0.4);
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn-group button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #ff4b6e;
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-group button:hover {
+  background: #e63b5c;
+  transform: scale(1.05);
+}
+
+/* Preview Box */
+.preview-box {
+  display: none;
+  background: #fff0f4;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 15px;
+  animation: fadeIn 0.6s ease;
+}
+
+.preview-box h3 {
+  color: #ff4b6e;
+  margin-bottom: 10px;
+}
+
+.preview-box p {
+  color: #333;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Link Box */
+.link-box {
+  display: none;
+  margin-top: 15px;
+  animation: fadeIn 0.6s ease;
+}
+
+.link-box p {
+  color: #ff4b6e;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.link-box input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Copy Button */
+#copyBtn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  background: #4caf50;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+#copyBtn:hover {
+  background: #43a047;
+}

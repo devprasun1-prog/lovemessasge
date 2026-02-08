@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Message Generator ❤️</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Card -->
+    <div class="card">
+
+      <h1>💌 Create Your Love Message</h1>
+      <p>Enter her name and send a special surprise ❤️</p>
+
+      <!-- Name Input -->
+      <input
+        type="text"
+        id="nameInput"
+        placeholder="Enter her name..."
+        maxlength="20"
+      />
+
+      <!-- Buttons -->
+      <div class="btn-group">
+
+        <button id="previewBtn">
+          Preview 💕
+        </button>
+
+        <button id="generateBtn">
+          Generate Link 🔗
+        </button>
+
+      </div>
+
+      <!-- Preview Box -->
+      <div id="previewBox" class="preview-box">
+        <h3>Preview 💖</h3>
+        <div id="previewResult"></div>
+      </div>
+
+      <!-- Link Box -->
+      <div id="linkBox" class="link-box">
+        <p>Your Special Link 💝</p>
+
+        <input type="text" id="shareLink" readonly />
+
+        <button id="copyBtn">
+          Copy Link 📋
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Script -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>

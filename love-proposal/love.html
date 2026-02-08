@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Someone Loves You ❤️</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.hidden{display:none;}
+
+.love-gif{
+  width:180px;
+  margin-bottom:15px;
+}
+
+.warning{
+  color:red;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.love-line{
+  animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.start-btn{
+  margin-top:15px;
+}
+
+.proposal-btns{
+  position:relative;
+  height:130px;
+}
+
+.no-btn{
+  position:absolute;
+}
+
+#verifyBtn:disabled{
+  background:#aaa;
+  cursor:not-allowed;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="assets/music/love.mp3" type="audio/mpeg">
+</audio>
+
+
+<div class="container">
+
+<div class="card love-card">
+
+
+<!-- STEP 1 -->
+<div id="step1">
+
+<video class="love-gif" autoplay loop muted playsinline>
+  <source src="assets/gifs/img1.mp4" type="video/mp4"></video>
+
+<h2>Someone has something special for you 💌</h2>
+
+<button id="startBtn" class="start-btn">
+Start 💕
+</button>
+
+</div>
+
+
+<!-- STEP 2 -->
+<div id="step2" class="hidden">
+
+<h3>Fill Your Name ❤️</h3>
+
+<input 
+type="text"
+id="receiverInput"
+placeholder=""
+>
+
+<p class="warning" id="warningText"></p>
+
+<button id="verifyBtn" disabled>
+✅ Reveal My Love 💕
+</button>
+
+</div>
+
+
+<!-- STEP 3 -->
+<div id="step3" class="hidden">
+
+<h3>Your Special Message 💖</h3>
+
+<div id="loveOutput"></div>
+
+<br>
+
+<button id="finalBtn">
+My Final Proposal 💍
+</button>
+
+</div>
+
+
+<!-- STEP 4 -->
+<div id="step4" class="hidden">
+
+<video class="love-gif" autoplay loop muted playsinline>
+  <source src="assets/gifs/img3.mp4" type="video/mp4"></video>
+
+<h2 id="finalMsg">Do You Love Me? ❤️</h2>
+
+<div class="btn-group proposal-btns">
+
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn" class="no-btn">No 😏</button>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+
+/* LOVE DICTIONARY */
+
+const loveLetters = {
+A:"Always in my heart 💕",
+B:"Best thing in my life 💖",
+C:"Cutest person ever 😘",
+D:"Dream girl 💭❤️",
+E:"Everything to me 🌍",
+F:"Forever mine ♾️💕",
+G:"Gift from God 🙏❤️",
+H:"Heart stealer 💘",
+I:"I love you endlessly 😍",
+J:"Just perfect 💫",
+K:"Kindest soul 💖",
+L:"Love of my life ❤️",
+M:"My happiness 😊",
+N:"No one like you 💕",
+O:"Only you 💘",
+P:"Precious to me 💎",
+Q:"Queen of my heart 👑❤️",
+R:"Reason I smile 😊",
+S:"Sweetest love 🍭💖",
+T:"True love 💕",
+U:"Universe for me 🌌",
+V:"Very special 💝",
+W:"World to me 🌍❤️",
+X:"XOXO hugs & kisses 😘",
+Y:"You are mine 💕",
+Z:"Zindagi meri ❤️"
+};
+
+
+/* NO BUTTON MESSAGES */
+
+const noMessages = [
+"Are you sure?",
+"Really sure??",
+"Are you positive?",
+"Pookie please...",
+"Just think about it!",
+"If you say no, I will be really sad...",
+"I will be very sad...",
+"I will be very very very sad...",
+"Ok fine, I will stop asking...",
+"Just kidding, say yes please! ❤️"
+];
+
+
+/* GET NAME FROM URL */
+
+const params = new URLSearchParams(window.location.search);
+const senderName = (params.get("name") || "").toUpperCase();
+
+
+/* ELEMENTS */
+
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+const step4 = document.getElementById("step4");
+
+const startBtn = document.getElementById("startBtn");
+
+const receiverInput = document.getElementById("receiverInput");
+const verifyBtn = document.getElementById("verifyBtn");
+const warningText = document.getElementById("warningText");
+
+const loveOutput = document.getElementById("loveOutput");
+const finalBtn = document.getElementById("finalBtn");
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const finalMsg = document.getElementById("finalMsg");
+
+const bgMusic = document.getElementById("bgMusic");
+
+
+/* STEP 1 */
+
+startBtn.onclick = ()=>{
+
+  bgMusic.play(); // Start music 🎵
+
+  step1.classList.add("hidden");
+  step2.classList.remove("hidden");
+
+  receiverInput.placeholder = senderName;
+};
+
+
+/* STEP 2 VERIFY */
+
+receiverInput.addEventListener("input",()=>{
+
+const val = receiverInput.value.trim().toUpperCase();
+
+if(val === senderName){
+
+  warningText.innerText="";
+  verifyBtn.disabled=false;
+
+}else{
+
+  warningText.innerText="⚠ Enter your correct name which sender filled";
+  verifyBtn.disabled=true;
+
+}
+
+});
+
+
+verifyBtn.onclick = ()=>{
+
+step2.classList.add("hidden");
+step3.classList.remove("hidden");
+
+showLetters();
+
+};
+
+
+/* LETTER ANIMATION */
+
+function showLetters(){
+
+loveOutput.innerHTML="";
+
+let i=0;
+
+const inter=setInterval(()=>{
+
+if(i>=senderName.length){
+
+clearInterval(inter);
+return;
+
+}
+
+const ch=senderName[i];
+
+if(loveLetters[ch]){
+
+const p=document.createElement("p");
+p.className="love-line";
+
+p.innerHTML=`⭐ <b>${ch}</b> → ${loveLetters[ch]}`;
+
+loveOutput.appendChild(p);
+
+}
+
+i++;
+
+},700);
+
+}
+
+
+/* STEP 3 */
+
+finalBtn.onclick=()=>{
+
+step3.classList.add("hidden");
+step4.classList.remove("hidden");
+
+};
+
+
+/* FINAL PROPOSAL */
+
+let msgIndex=0;
+let canRun=false;
+
+
+noBtn.onclick=()=>{
+
+if(msgIndex<noMessages.length){
+
+noBtn.innerText=noMessages[msgIndex];
+msgIndex++;
+
+if(msgIndex>=noMessages.length){
+canRun=true;
+}
+
+}
+
+};
+
+
+noBtn.addEventListener("mouseover",()=>{
+
+if(!canRun) return;
+
+const box=document.querySelector(".love-card");
+
+const maxX=box.offsetWidth-noBtn.offsetWidth;
+const maxY=box.offsetHeight-noBtn.offsetHeight;
+
+noBtn.style.left=Math.random()*maxX+"px";
+noBtn.style.top=Math.random()*maxY+"px";
+
+});
+
+
+yesBtn.onclick=()=>{
+
+finalMsg.innerHTML="I Love You Too ❤️😍<br>Forever 💕";
+
+noBtn.style.display="none";
+yesBtn.style.display="none";
+
+};
+
+
+</script>
+
+</body>
+</html>
